@@ -43,7 +43,7 @@ class Server:
         """Implement a get_hyper_index method with two integer arguments"""
         assert type(index) is int and type(page_size) is int
         assert 0 <= index < len(self.indexed_dataset())
-        iindex_data = []
+        index_data = []
         next_index = page_size + index
         for i in range(index, next_index):
             if not self.indexed_dataset().get(i)
