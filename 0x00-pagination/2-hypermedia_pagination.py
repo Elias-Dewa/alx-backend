@@ -41,7 +41,7 @@ class Server:
         except IndexError:
             return []
 
-    def get_hyper(self, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+    def get_hyper(self, page: int = 1, page_size: int = 10) -> dict:
         """  returns a dictionary containing key-value pairs """
         assert type(page) is int and type(page_size) is int
         assert page > 0 and page_size > 0
