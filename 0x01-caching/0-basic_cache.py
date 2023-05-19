@@ -5,7 +5,7 @@
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-class BaseCache(BaseCaching):
+class BasicCache(BaseCaching):
     """Define a cache class that inherits from BaseCaching
     """
 
