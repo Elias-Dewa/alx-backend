@@ -18,7 +18,7 @@ class LIFOCache(BaseCaching):
         """A method that assign to the dictionary
         """
         if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            lifo_key = self.indexKeys.pop(0)
+            lifo_key = self.indexKeys.pop()
             del self.cache_data[lifo_key]
             print("DISCARD: " + lifo_key)
 
