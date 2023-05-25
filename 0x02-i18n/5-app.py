@@ -46,7 +46,8 @@ def get_user():
 @app.before_request
 def before_request():
     """a method to find a user if any"""
-    g.user = get_user()
+    user = get_user()
+    g.user = user
 
 
 @app.route("/")
