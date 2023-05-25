@@ -25,8 +25,7 @@ def get_locale():
     locale = request.args.get("locale")
     if locale is None:
         return request.accept_languages.best_match(Config.LANGUAGES)
-    else:
-        return locale
+    return locale
 
 
 @app.route("/")
@@ -36,4 +35,4 @@ def home():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
