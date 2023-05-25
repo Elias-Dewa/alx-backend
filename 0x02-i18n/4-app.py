@@ -9,7 +9,7 @@ app = Flask(__name__)
 babel = Babel(app)
 
 
-class Config(object):
+class Config:
     """Config class for babel."""
     LANGUAGES = ["en", "fr"]
     BABEL_DEFAULT_LOCALE = "en"
@@ -24,7 +24,7 @@ def get_locale():
     """function to determine the best match with supported languages."""
     locale = request.args.get("locale")
     if locale is None:
-        return request.accept_languages.best_match(app.config["LANGUAGES"])
+        return request.accept_languages.best_match(Config.LANGUAGES)
     return locale
 
 
