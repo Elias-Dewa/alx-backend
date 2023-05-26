@@ -40,7 +40,7 @@ def get_user():
     or if login_as was not passed."""
     userId = request.args.get("login_as")
     if userId:
-        return users[int(userId)]
+        return users.get(int(userId))
 
 
 @app.before_request
