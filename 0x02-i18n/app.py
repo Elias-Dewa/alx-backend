@@ -2,6 +2,7 @@
 """Setup a basic Flask app and instantiate the Babel object in the app. Store
 it in a module-level variable named babel"""
 from flask import Flask, render_template, request
+import pytz
 from flask_babel import Babel
 
 
@@ -48,7 +49,7 @@ def get_user():
     or if login_as was not passed."""
     userId = request.args.get("login_as")
     if userId:
-        return users.get(int(userId))
+        return users[int(userId)]
 
 
 @app.before_request
@@ -57,10 +58,27 @@ def before_request():
     g.user = get_user()
 
 
+def get_timezone():
+    """a method to get the timezone"""
+    timeZone = request.args.get("timezone")
+    if timeZone in pytz.all_timezones:
+        return timeZone
+    else:
+        raise pytz.exceptions.UnknownTimeZoneError
+    userId = request.args.get("login_as")
+    timeZone = users[int(userId)]["timezone"]
+    if timeZone in pytz.all_timezones:
+        return timeZone
+    else:
+        raise pytz.exceptions.UnknownTimeZoneError
+
+    return app.config["BABEL_DEFAULT_TIMEZONE"]
+
+
 @app.route("/")
 def home():
     """Function for home page"""
-    return render_template("6-index.html")
+    return render_template("index.html")
 
 
 if __name__ == "__main__":

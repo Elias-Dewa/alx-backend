@@ -78,7 +78,7 @@ def get_timezone():
 @app.route("/")
 def home():
     """Function for home page"""
-    return render_template("5-index.html")
+    return render_template("7-index.html")
 
 
 if __name__ == "__main__":
