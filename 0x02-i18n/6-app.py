@@ -26,23 +26,6 @@ class Config:
 app.config.from_object(Config)
 
 
-@babel.localeselector
-def get_locale():
-    """function to determine the best match with supported languages."""
-    locale = request.args.get("locale")
-    if locale:
-        return locale
-    if g.user:
-        locale = g.user.get("locale")
-        if locale:
-            return locale
-    locale = request.headers.get("locale")
-    if locale:
-        return locale
-
-    return request.accept_languages.best_match(app.config["LANGUAGES"])
-
-
 def get_user():
     """a method returns a user dictionary or None if the ID cannot be found
     or if login_as was not passed."""
@@ -55,6 +38,23 @@ def get_user():
 def before_request():
     """a method to find a user if any"""
     g.user = get_user()
+
+
+@babel.localeselector
+def get_locale():
+    """function to determine the best match with supported languages."""
+    locale = request.args.get("locale")
+    if locale:
+        if locale in Config.LANGUAGES:
+            return locale
+    if g.user:
+        locale = g.user.get("locale")
+        if locale and locale in Config.LANGUAGES:
+            return locale
+    locale = request.headers.get("locale")
+    if locale and locale in Config.LANGUAGES:
+        return locale
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
 
 
 @app.route("/")
