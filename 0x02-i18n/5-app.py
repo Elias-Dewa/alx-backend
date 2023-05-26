@@ -24,6 +24,7 @@ class Config:
 
 
 app.config.from_object(Config)
+"""config for the application"""
 
 
 @babel.localeselector
