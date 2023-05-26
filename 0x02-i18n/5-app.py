@@ -24,7 +24,6 @@ class Config:
 
 
 app.config.from_object(Config)
-"""config for the application"""
 
 
 @babel.localeselector
@@ -41,7 +40,7 @@ def get_user():
     or if login_as was not passed."""
     userId = request.args.get("login_as")
     if userId:
-        return users.get(int(userId))
+        return users[int(userId)]
 
 
 @app.before_request
