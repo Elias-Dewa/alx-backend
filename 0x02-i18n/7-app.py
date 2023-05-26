@@ -57,7 +57,7 @@ def before_request():
     """a method to find a user if any"""
     g.user = get_user()
 
-
+@babel.timezoneselector
 def get_timezone():
     """a method to get the timezone"""
     timeZone = request.args.get("timezone")
