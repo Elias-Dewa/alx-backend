@@ -4,5 +4,6 @@
   },
   "python.formatting.provider": "none",
   "python.linting.pycodestyleEnabled": true,
-  "python.linting.enabled": true
+  "python.linting.enabled": true,
+  "git.ignoreLimitWarning": true
 }
